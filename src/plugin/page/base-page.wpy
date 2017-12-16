@@ -79,12 +79,12 @@
 
 <script>
   import wepy from 'wepy'
-  import List from '../components/list'
+  import List from '../../components/list'
   import Panel from '@/components/panel' // alias example
   import Counter from 'counter' // alias example
-  import Group from '../components/group'
+  import Group from '../../components/group'
   import Toast from 'wepy-com-toast'
-  import testMixin from '../plugin/mixins/test'
+  import testMixin from '../mixins/test'
 
   export default class Index extends wepy.page {
     config = {
