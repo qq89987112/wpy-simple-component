@@ -1,0 +1,37 @@
+[loading]:empty,.loading:empty {
+  &:before,&:after{
+    content:'';
+    display:inline-block;
+    width: 10px!important;
+    height: 10px!important;
+    border-radius: 50%;
+    position: absolute!important;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    background: #20a0ff;
+    opacity: 0.5;
+  }
+  &:before{
+    animation: loading 2s 0s infinite ease-in-out;
+  }
+  &:after{
+    animation: loading 2s -1s infinite ease-in-out;
+  }
+
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    -webkit-transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0.5;
+  }
+}
