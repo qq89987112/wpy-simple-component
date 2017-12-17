@@ -2,9 +2,13 @@
 ## 关于实现
 ### empty的界面可以使用纯css + wx:if 来实现
 ### loading的效果可以使用纯css + wx:if 来实现(参考empty)
-  <div loading><block wx:if={{loading}}>
+  <div loading>
+    <block wx:if={{loading}}>
 
-  </block></div>
+    </block>
+  </div>
+  小程序会编译成<div loading></div>
+  所以放心换行
 ### toast的效果可以用纯css实现
 
 
