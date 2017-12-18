@@ -19,3 +19,13 @@
 
 ### eslint在webstorm中配置了vue文件支持后,alt+enter不好使的解决方法
 #### code format 一下, 全局替换 ; " 一下。
+
+## rem布局
+  以 750px 设计稿作为基准，根节点设置 font-size 为 100px ,只考虑 DPR 为 2 的情况，只考虑最简单的情况
+   document.querySelector('html').style.fontSize = `${window.innerWidth / 7.5 }px`;
+
+   现在移动端 css3 单位 vw ,wh 兼容性已经很不错了，在不需要兼容太低版本的安卓机情况下可以这样来：
+
+   html{
+   font-size: 100vw / 750
+   }
