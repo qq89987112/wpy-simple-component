@@ -1,0 +1,4 @@
+<input bindinput="onInput('vehicleId')" type='text'/></view>
+onInput(type, event) {
+this[type] = event.detail.value
+},
