@@ -34,4 +34,8 @@ this.setData({
 
   配合selectAllComponents放在组件中。
 
-   this.selectAllComponents(".style-list")[0].slideDown();
+     toggle(disc,idx){
+          disc.$isExpand = !disc.$isExpand;
+          let component = this.selectAllComponents(".style-list")[idx];
+          disc.$isExpand ? component.slideDown() : component.slideUp();
+      },
