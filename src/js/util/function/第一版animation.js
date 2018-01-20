@@ -1,6 +1,11 @@
 // 使用 在 onLoad中初始化
 // this.side = animate.slide(this);
 //
+
+
+
+
+// 会有闪烁问题。闪烁的时候设置为透明？66  小程序的动画也是加style而已。
 module.exports =  {
     slide(context, styleName = 'styles') {
         let
