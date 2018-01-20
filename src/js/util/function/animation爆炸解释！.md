@@ -30,3 +30,8 @@ this.setData({
         overflow: hidden;
         transition: height .3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
       }
+
+
+  配合selectAllComponents放在组件中。
+
+   this.selectAllComponents(".style-list")[0].slideDown();
