@@ -1,0 +1,63 @@
+<template>
+  <view class="{{['custom-modal',active&&'active']}}" @tap="hide">
+    <view class="custom-modal-content" @tap.stop="">
+      <slot></slot>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Modal extends wepy.component {
+    data = {
+      active:false
+    }
+    methods = {
+      hide(){
+        this.active = false;
+      },
+      show(){
+        this.active = true;
+      },
+      toggle(){
+        this.active = !this.active;
+      }
+    }
+  }
+</script>
+<style lang="scss">
+  .custom-modal {
+    /*这个方法失效*/
+    /*box-shadow: 0 0 1000rpx rgba(0,0,0,0.5);*/
+    display: flex;
+    position: fixed;
+    align-items: center;
+    align-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: transparent;
+
+    &.active{
+      z-index: 11;
+      background: rgba(0, 0, 0, 0.7);
+
+      .custom-modal-content{
+        transform: scale(1);
+      }
+    }
+
+
+    .custom-modal-content{
+      padding: 30rpx;
+      margin: 0 30rpx;
+      background-color: #fff;
+      transition: transform 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+      align-self: center;
+      transform: scale(0);
+      z-index: 12;
+    }
+  }
+</style>
