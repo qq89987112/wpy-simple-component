@@ -1,0 +1,58 @@
+<template>
+  <view class="{{['custom-popup',active&&'active']}}">
+    <view class="mask"></view>
+    <view class="content">
+      <slot></slot>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Popup extends wepy.component {
+    props = {
+      active:{
+        type:Boolean,
+        default:false
+      }
+    }
+  }
+</script>
+<style lang="scss">
+  .custom-popup {
+    /*这个方法失效*/
+    /*box-shadow: 0 0 1000rpx rgba(0,0,0,0.5);*/
+    z-index: 11;
+
+    &.active{
+      .content{
+        transform: translate3d(0,0,0);
+      }
+
+      .mask{
+        display: block;
+      }
+    }
+
+    .mask{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+    }
+
+    .content{
+      transform: translate3d(0,100%,0);
+      transition:all 0.4s ease;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+  }
+</style>
