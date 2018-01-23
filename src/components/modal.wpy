@@ -1,6 +1,7 @@
 <template>
   <view class="{{['custom-modal',active&&'active']}}" @tap="hide">
     <view class="custom-modal-content" @tap.stop="">
+      <view class="header"><text class="close" @tap="hide">X</text></view>
       <slot></slot>
     </view>
   </view>
@@ -51,6 +52,13 @@
 
 
     .custom-modal-content{
+      .header{
+        .close{
+          float: right;
+          color: #aaa;
+        }
+      }
+
       padding: 30rpx;
       margin: 0 30rpx;
       background-color: #fff;
