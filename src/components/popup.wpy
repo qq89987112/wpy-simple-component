@@ -1,7 +1,7 @@
 <template>
   <view class="{{['custom-popup',active&&'active']}}">
-    <view class="mask"></view>
-    <view class="content">
+    <view class="custom-popup-mask"  bindtap="hide"></view>
+    <view class="custom-popup-content">
       <slot></slot>
     </view>
   </view>
@@ -10,10 +10,18 @@
   import wepy from 'wepy'
 
   export default class Popup extends wepy.component {
-    props = {
-      active:{
-        type:Boolean,
-        default:false
+    data = {
+      active:false
+    }
+    methods = {
+      hide(){
+        this.active = false;
+      },
+      show(){
+        this.active = true;
+      },
+      toggle(){
+        this.active = !this.active;
       }
     }
   }
@@ -25,16 +33,16 @@
     z-index: 11;
 
     &.active{
-      .content{
+      .custom-popup-content{
         transform: translate3d(0,0,0);
       }
 
-      .mask{
+      .custom-popup-mask{
         display: block;
       }
     }
 
-    .mask{
+    .custom-popup-mask{
       position: fixed;
       top: 0;
       left: 0;
@@ -45,12 +53,15 @@
       display: none;
     }
 
-    .content{
+    .custom-popup-content{
+      background-color: #fff;
       transform: translate3d(0,100%,0);
       transition:all 0.4s ease;
       position: fixed;
+      z-index: 12;
       bottom: 0;
-      width: 100%;
+      left: 0;
+      right: 0;
     }
 
 
