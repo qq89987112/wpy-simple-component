@@ -3,8 +3,6 @@ import wepy from 'wepy'
 
 export default class BasePage extends wepy.page {
 
-
-
   constructor(){
     super();
   }
@@ -14,11 +12,17 @@ export default class BasePage extends wepy.page {
   }
 
   toast(info){
+    try{
+      this.$invoke('T', 'show', {
+        title: info
+      });
+    }catch (e){
       wx.showToast({
         title: info,
         icon: 'none',
         duration: 3000
       });
+    }
   }
   showLoading(title){
     wx.showLoading({
@@ -34,6 +38,9 @@ export default class BasePage extends wepy.page {
     return api(params).then(data=>{
       this.hideLoading();
       return data;
+    }).catch(info=>{
+      this.hideLoading();
+      return Promise.reject(info);
     })
   }
 
