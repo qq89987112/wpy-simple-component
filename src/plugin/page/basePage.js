@@ -40,6 +40,7 @@ export default class BasePage extends wepy.page {
       return data;
     }).catch(info=>{
       this.hideLoading();
+      this.toast(info);
       return Promise.reject(info);
     })
   }
