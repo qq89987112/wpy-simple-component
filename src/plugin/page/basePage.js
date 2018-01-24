@@ -1,17 +1,43 @@
 import wepy from 'wepy'
 
-export default class extends wepy.page {
-  $toast(content) {
-    this.$invoke('toast', 'show', {
-      title: content
+
+export default class BasePage extends wepy.page {
+
+
+
+  constructor(){
+    super();
+  }
+
+  onLoad() {
+    super.onLoad()
+  }
+
+  toast(info){
+      wx.showToast({
+        title: info,
+        icon: 'none',
+        duration: 3000
+      });
+  }
+  showLoading(title){
+    wx.showLoading({
+      title: title||"正在加载",
+      mask: true
+    });
+  }
+  hideLoading(){
+    wx.hideLoading();
+  }
+  wrapLoading(api,params){
+    this.showLoading()
+    return api(params).then(data=>{
+      this.hideLoading();
+      return data;
     })
   }
 
-  $toastError(content) {
-    return this.$toast(content)
-  }
-
-  $showModal({title, content}) {
+  showModal({title, content}) {
     return new Promise((resolve, reject) => {
       wx.showModal({
         title,
@@ -25,9 +51,5 @@ export default class extends wepy.page {
         }
       })
     })
-  }
-
-  onLoad() {
-    super.onLoad()
   }
 }
