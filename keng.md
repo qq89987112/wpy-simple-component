@@ -6,4 +6,12 @@
 控制slider滑块大小可以用scale
 权重计算在开发者工具中被划线但不一定是失效的
 
+18-1-25
 wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用 this.$digest();直接调用 this.setData({list})也能刷新，但几个操作后就会变白。
+组件内的selectCompon不能用wx，而要用this
+wepy 不支持字面量， :active="true"  active="{{true}}"  都不可以，只能定义成变量 需要类型声明
+小程序num+rpx 中间不能有空格
+import wepy文件不要加后缀名
+调试同一个元素的css不必要重新选中，右侧会保留，点击开发者工具的下侧还能激活回来
+
+小程序的好处：  html不用做空值判断
