@@ -19,6 +19,14 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 
                  这里可以用 <bookingIcon :appType.sync="item.appType"/>
 
+# 组件封装
+## 引入  在components的前后顺序和嵌套顺序必须一致。
+##  <popup>
+         <addressList @address.user="onAddressTap"></addressList>
+       </popup>
+
+      使用 .user 的页面必须是继承自 Page 而不是 component
+
 
 小程序num+rpx 中间不能有空格
 import wepy文件不要加后缀名
