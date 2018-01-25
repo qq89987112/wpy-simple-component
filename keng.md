@@ -12,10 +12,12 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 
 # wepy 不支持字面量
 - :active="true"  active="{{true}}"  都不可以，只能定义成变量，需要类型声明，然后       <steps :steps="steps"></steps>
-- 涉及网络请求的记得加 .sync
+- 涉及网络请求的记得加 .sync  这里不能用 <bookingIcon :appType.sync="item.appType"/> 需要用 <bookingIcon :appType.sync="appType"/>
 - 涉及列表的记得用 <repeat for="{{grouplist.list}}" item="item">
                       <bookingIcon :appType.sync="item.appType"/>
                  </repeat>
+
+                 这里可以用 <bookingIcon :appType.sync="item.appType"/>
 
 
 小程序num+rpx 中间不能有空格
