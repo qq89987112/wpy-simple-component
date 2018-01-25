@@ -9,7 +9,15 @@
 18-1-25
 wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用 this.$digest();直接调用 this.setData({list})也能刷新，但几个操作后就会变白。
 组件内的selectCompon不能用wx，而要用this
-wepy 不支持字面量， :active="true"  active="{{true}}"  都不可以，只能定义成变量，需要类型声明，然后       <steps :steps="steps"></steps>
+
+# wepy 不支持字面量
+- :active="true"  active="{{true}}"  都不可以，只能定义成变量，需要类型声明，然后       <steps :steps="steps"></steps>
+- 涉及网络请求的记得加 .sync
+- 涉及列表的记得用 <repeat for="{{grouplist.list}}" item="item">
+                      <bookingIcon :appType.sync="item.appType"/>
+                 </repeat>
+
+
 小程序num+rpx 中间不能有空格
 import wepy文件不要加后缀名
 调试同一个元素的css不必要重新选中，右侧会保留，点击开发者工具的下侧还能激活回来
