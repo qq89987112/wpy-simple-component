@@ -12,7 +12,7 @@
 <script>
   import wepy from 'wepy'
 
-  class DateUtils {
+  export class DateUtils {
     constructor(date){
       this.date = date;
     }
