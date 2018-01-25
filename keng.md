@@ -5,3 +5,5 @@
 <view class="{{['title',music.isHot&&'hot',music.isNew&&'new']}}">{{music.title}}</view> 但是text标签就不好用了。
 控制slider滑块大小可以用scale
 权重计算在开发者工具中被划线但不一定是失效的
+
+wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用 this.$digest();直接调用 this.setData({list})也能刷新，但几个操作后就会变白。
