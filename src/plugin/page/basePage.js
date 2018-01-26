@@ -19,7 +19,7 @@ export default class BasePage extends wepy.page {
     }catch (e){
       wx.showToast({
         title: info,
-        icon: 'none',
+        icon: 'loading',
         duration: 3000
       });
     }
@@ -33,9 +33,33 @@ export default class BasePage extends wepy.page {
   hideLoading(){
     wx.hideLoading();
   }
-  wrapLoading(api,params){
+
+  // if (!this.formCheck(
+  //   ['date', v => v, '请选择时间！']
+  // ))
+  formCheck(...params){
+    return params.find(item=>{
+      const
+        name = item[0],
+        test = item[1],
+        message = item[2];
+        if(test instanceof Function){
+          if (!test(this[name])) {
+            this.toast(message);
+            //中断循环
+            return true;
+          }
+        }else if(test instanceof RegExp){
+          throw new Error('不支持的语法')
+        }else{
+          throw new Error('不支持的语法')
+        }
+    })
+  }
+
+  wrapLoading(api,...params){
     this.showLoading()
-    return api(params).then(data=>{
+    return api(...params).then(data=>{
       this.hideLoading();
       return data;
     }).catch(info=>{
