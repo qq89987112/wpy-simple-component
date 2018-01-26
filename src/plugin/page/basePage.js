@@ -35,12 +35,14 @@ export default class BasePage extends wepy.page {
   }
 
   // if (!this.formCheck(
-  //   ['date', v => v, '请选择时间！']
+  //   ['date', v => v, '请选择时间！'],
+  //   ['date', v => v, '请选择时间！'],
   // ))
   formCheck(...params){
     return params.find(item=>{
       const
         name = item[0],
+        //通过时的条件
         test = item[1],
         message = item[2];
         if(test instanceof Function){
@@ -50,7 +52,11 @@ export default class BasePage extends wepy.page {
             return true;
           }
         }else if(test instanceof RegExp){
-          throw new Error('不支持的语法')
+          if (!test.test(this[name])) {
+            this.toast(message);
+            //中断循环
+            return true;
+          }
         }else{
           throw new Error('不支持的语法')
         }
