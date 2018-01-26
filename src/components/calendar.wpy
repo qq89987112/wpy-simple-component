@@ -3,7 +3,7 @@
     <view class="custom-calendar-title"><view class="icon-left" @tap="change('left')">＜</view><text class="date-str">{{dateStr}}</text><view class="icon-right" @tap="change('right')">＞</view></view>
     <view class="custom-calendar-content">
       <repeat wx:for="{{dates}}"  item="item">
-        <view class="custom-calendar-content-item {{item.active&&'active'}}" @tap="onDateTap({{item}})"><text>{{item.text}}</text></view>
+        <view class="custom-calendar-content-item {{item.active&&'active'}} {{item.valid&&'valid'}}" @tap="onDateTap({{item}})"><text>{{item.text}}</text></view>
       </repeat>
 
     </view>
@@ -49,6 +49,11 @@
       return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
     }
 
+    format(split = '-'){
+      let date = this.date;
+      return `${date.getFullYear()}${split}${String(date.getMonth()+1).padStart(2,0)}${split}${String(date.getDate()).padStart(2,0)}`;
+    }
+
     equal(date){
       // [\d:]+ GMT
       const thisDate = this.date;
@@ -58,55 +63,63 @@
 
 
 
-    export default class calendar extends  wepy.page {
+  export default class calendar extends  wepy.component {
     constructor(){
       super();
-      this.data = this.computeView();
     }
 
-    computeView(){
-      //获取上一个月的最后X天
-      let
-        dateUtils = new DateUtils(new Date(this.dateUtils.date.getTime())),
-        date = dateUtils.date;
+    data = {
+      selectedDate:false,
+      validDates:false
+    }
+
+    computed = {
+      dates(){
+        //获取上一个月的最后X天
+        let
+          dateUtils = new DateUtils(new Date(this.dateUtils.date.getTime())),
+          date = dateUtils.date;
         date.setDate(1);
-      let
-        x = date.getDay(),
-        preDays = dateUtils.lastMonth().getDays(),
-        preDates = new Array(x).fill(0).map(()=>{return {text:preDays--}}).reverse();
+        let
+          x = date.getDay(),
+          preDays = dateUtils.lastMonth().getDays(),
+          preDates = new Array(x).fill(0).map(()=>{return {text:preDays--}}).reverse();
         dateUtils.nextMonth();
 
-      //本月最后一天星期几 下一个月的前几天,
-      let
-        days = dateUtils.getDays();
-      date.setDate(days);
-      let
-        lastDay = date.getDay();
-      //如果是星期日就变为0，其他不变，如星期一就是1
-      lastDay = +(lastDay===7 && '0' || lastDay);
-
-      return {
-        dates:this.weekDays.concat(preDates).concat(new Array(days).fill(0).map((i,index)=>{
+        //本月最后一天星期几 下一个月的前几天,
+        let
+          days = dateUtils.getDays();
+        date.setDate(days);
+        let
+          lastDay = date.getDay();
+        //如果是星期日就变为0，其他不变，如星期一就是1
+        lastDay = +(lastDay===7 && '0' || lastDay);
+        return this.weekDays.concat(preDates).concat(new Array(days).fill(0).map((i,index)=>{
           let
             text = index+1,
             tempDate = new Date(date.getTime());
-            tempDate.setDate(text);
-            return {
-              text: text,
-              active: this.dateUtils.equal(tempDate),
-              date:tempDate
-        }}
-        )).concat(new Array(6-lastDay).fill(0).map((i,index)=>{return {text:index+1}})),
-        dateStr:this.dateUtils.chineseDate()
+          tempDate.setDate(text);
+
+          let
+            validDates = this.validDates,
+            valid = validDates&&validDates.find(i=>(new DateUtils(tempDate)).equal(new Date(i))),
+            selectedDate = this.selectedDate;
+          return {
+            text: text,
+            //判断selectedDate是否存在并且等于当前tempDate 。 当 validDates 存在 且 当天不存在于其内，selectedDate就为空。
+            active:selectedDate&&(new DateUtils(selectedDate)).equal(tempDate),
+            date:tempDate,
+            valid
+          }}
+        )).concat(new Array(6-lastDay).fill(0).map((i,index)=>{return {text:index+1}}))
+      },
+      dateStr(){
+        return this.dateUtils.chineseDate()
       }
     }
 
-    reLoad(){
-      const computed = this.computeView();
-      this.dates = computed.dates;
-      this.dateStr = computed.dateStr;
-      this.$digest();
-    }
+
+
 
 
     weekDays = ['日','一','二','三','四','五','六'].map(i=>{return {isTitle:true,text:i}});
@@ -120,19 +133,33 @@
     onLoad() {
     };
 
+    selectDate(date){
+      let
+        validDates = this.validDates,
+        valid = !validDates || validDates.find(i=>(new DateUtils(date)).equal(new Date(i)));
+        if(valid){
+          this.selectedDate = date;
+          this.$emit('date',date);
+        }
+    }
+
+    setValidDates(validDates){
+      this.validDates = validDates;
+      this.selectDate(this.dateUtils.date);
+      this.$digest();
+    }
+
     methods = {
       onDateTap(date){
         let date2 = date.date;
-        if(!date.isTitle&&date2){
-          this.dateUtils.date = new Date(date2);
-          this.$emit('date',date2);
-          this.reLoad();
+        if(!date.isTitle&&date2&&date.valid){
+          this.selectDate(new Date(date2));
         }
       },
       change(direction){
         let dateUtils = this.dateUtils;
         direction==='left' ? dateUtils.lastMonth() : dateUtils.nextMonth();
-        this.reLoad();
+
       }
     };
   }
@@ -170,12 +197,17 @@
         max-width: 14%;
         margin: 0.5em 0;
         text{
+          border-radius: 50%;
           display: inline-block;
           width: 2em;
         }
+        &.valid{
+          text{
+            border: 1rpx solid #fff;
+          }
+        }
         &.active{
           text{
-            border-radius: 50%;
             background-color: #fff;
             color: #5687c9;
           }
