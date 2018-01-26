@@ -12,12 +12,11 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 
 # wepy 不支持字面量
 - :active="true"  active="{{true}}"  都不可以，只能定义成变量，需要类型声明，然后<steps :steps="steps"></steps>,且props声明的组件必须继承自wepy.component
-  - 和 自定义user事件冲突(组件需继承wepy.page)，若是嵌套使用则懵逼。
+  - 和 自定义user事件冲突(组件需继承wepy.page)，若是嵌套使用则懵逼。只能在onLoad中通过调用组件的set方法来做。
 - 涉及网络请求的记得加 .sync  这里不能用 <bookingIcon :appType.sync="item.appType"/> 需要用 <bookingIcon :appType.sync="appType"/>
 - 涉及列表的记得用 <repeat for="{{grouplist.list}}" item="item">
                       <bookingIcon :appType.sync="item.appType"/>
                  </repeat>
-
                  这里可以用 <bookingIcon :appType.sync="item.appType"/>
 
 # 组件封装
