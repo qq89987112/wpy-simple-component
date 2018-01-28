@@ -1,7 +1,7 @@
 <template>
   <view class="{{['custom-modal',active&&'active']}}" @tap="hide">
     <view class="custom-modal-content" @tap.stop="">
-      <view class="header"><text class="close" @tap="hide">X</text></view>
+      <view class="custom-modal-header"><text class="close" @tap="hide">X</text></view>
       <slot></slot>
     </view>
   </view>
@@ -19,6 +19,7 @@
       },
       show(){
         this.active = true;
+        return this.hide;
       },
       toggle(){
         this.active = !this.active;
@@ -38,11 +39,23 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
     background-color: transparent;
 
+    animation: back .3s forwards;
+
+    @keyframes active {
+      100%{
+        z-index: 11;
+      }
+    }
+    @keyframes back {
+      100%{
+        z-index: -1;
+      }
+    }
+
     &.active{
-      z-index: 11;
+      animation: active .3s forwards;
       background: rgba(0, 0, 0, 0.7);
 
       .custom-modal-content{
@@ -52,13 +65,15 @@
 
 
     .custom-modal-content{
-      .header{
+      .custom-modal-header{
+        position: relative;
         .close{
-          float: right;
-          color: #aaa;
+          position: absolute;
+          right: -15rpx;
+          top: -15rpx;
         }
       }
-
+      width: 100%;
       padding: 30rpx;
       margin: 0 30rpx;
       background-color: #fff;
