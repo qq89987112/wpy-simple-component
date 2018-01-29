@@ -64,6 +64,7 @@ export default class BasePage extends wepy.page {
   }
 
   wrapLoading(api,...params){
+    this.hideLoading();
     this.showLoading()
     return api(...params).then(data=>{
       this.hideLoading();
