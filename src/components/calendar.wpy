@@ -3,7 +3,7 @@
     <view class="custom-calendar-title"><view class="iconfont icon-left" @tap="change('left')"></view><text class="date-str">{{dateStr}}</text><view class="iconfont icon-right" @tap="change('right')"></view></view>
     <view class="custom-calendar-content">
       <repeat wx:for="{{dates}}"  item="item">
-        <view class="custom-calendar-content-item {{item.active&&'active'}} {{item.valid&&'valid'}}" @tap="onDateTap({{item}})"><text>{{item.text}}</text></view>
+        <view class="custom-calendar-content-item {{item.active&&'active'}} {{item.otherMonth&&'dark'}} {{item.valid&&'valid'}}" @tap="onDateTap({{item}})"><text>{{item.text}}</text></view>
       </repeat>
 
     </view>
@@ -83,10 +83,10 @@
         let
           x = date.getDay(),
           preDays = dateUtils.lastMonth().getDays(),
-          preDates = new Array(x).fill(0).map(()=>{return {text:preDays--}}).reverse();
+          //上一个月的最后几天
+          preDates = new Array(x).fill(0).map(()=>{return {otherMonth:true,text:preDays--}}).reverse();
         dateUtils.nextMonth();
 
-        //本月最后一天星期几 下一个月的前几天,
         let
           days = dateUtils.getDays();
         date.setDate(days);
@@ -111,7 +111,8 @@
             date:tempDate,
             valid
           }}
-        )).concat(new Array(6-lastDay).fill(0).map((i,index)=>{return {text:index+1}}))
+        //  下一个月的前几天
+        )).concat(new Array(6-lastDay).fill(0).map((i,index)=>{return {otherMonth:true,text:index+1}}))
       },
       dateStr(){
         return this.dateUtils.chineseDate()
@@ -164,7 +165,7 @@
     };
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
   @font-face {
     font-family: 'custom-calendar';
@@ -230,6 +231,13 @@
             border: 1rpx solid #fff;
           }
         }
+
+        &.dark{
+          text{
+            color: #aaa;
+          }
+        }
+
         &.active{
           text{
             background-color: #fff;
