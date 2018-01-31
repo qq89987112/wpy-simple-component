@@ -19,7 +19,7 @@ export default class BasePage extends wepy.page {
     }catch (e){
       wx.showToast({
         title: info,
-        icon: 'loading',
+        icon: 'none',
         duration: 3000
       });
     }
