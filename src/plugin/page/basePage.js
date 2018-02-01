@@ -19,7 +19,7 @@ export default class BasePage extends wepy.page {
     }catch (e){
       wx.showToast({
         title: info,
-        icon: 'none',
+        icon: 'loading',//'none'在有些手机上是勾
         duration: 3000
       });
     }
