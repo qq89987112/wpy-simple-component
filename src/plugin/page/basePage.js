@@ -17,8 +17,10 @@ export default class BasePage extends wepy.page {
         title: info
       });
     }catch (e){
-      info = info instanceof String ?  info :'发生未知错误！';
-      console.error(info);
+      if (!(info instanceof String)) {
+        console.error(info);
+        info = '发生未知错误！';
+      }
       wx.showToast({
         title: info,
         icon: 'loading',//'none'在有些手机上是勾
