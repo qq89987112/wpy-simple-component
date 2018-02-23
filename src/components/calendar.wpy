@@ -127,6 +127,13 @@
 
     dateUtils = new DateUtils(new Date())
 
+    watch = {
+      validDates(value){
+        value = value&&value[0];
+        this.dateUtils = new DateUtils(value&&new Date(value)||new Date());
+        this.$apply();
+      }
+    }
 
     components = {};
     events = {};
@@ -159,6 +166,7 @@
       },
       change(direction){
         let dateUtils = this.dateUtils;
+        //为啥会触发更新？
         direction==='left' ? dateUtils.lastMonth() : dateUtils.nextMonth();
 
       }
