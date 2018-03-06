@@ -1,3 +1,14 @@
+##  https://www.npmjs.com/~gcaufy
+## wepy-web
+- 生成web版本
+$ wepy build --output web
+
+- 生成微信浏览器版本
+$ wepy build --output web --platform wechat
+
+- 生成QQ浏览器版本
+$ wepy build --output web --platform qq
+
 
 ## 关于实现
 ### empty的界面可以使用纯css + wx:if 来实现
