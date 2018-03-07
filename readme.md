@@ -1,5 +1,6 @@
-##  https://www.npmjs.com/~gcaufy
+# tools
 ## wepy-web
+- https://www.npmjs.com/~gcaufy
 - 生成web版本
 $ wepy build --output web
 
@@ -8,6 +9,8 @@ $ wepy build --output web --platform wechat
 
 - 生成QQ浏览器版本
 $ wepy build --output web --platform qq
+
+## wept 实时预览界面
 
 
 ## 关于实现
