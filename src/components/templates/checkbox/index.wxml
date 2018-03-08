@@ -1,0 +1,4 @@
+<!--checkbox-->
+<template name="checkbox">
+  <view bindtap="onCheck" data-index="{{index}}" data-checked="{{!checked}}" class="iconfont {{checked ? 'icon-check' :'icon-unchecked'}}"/>
+</template>
