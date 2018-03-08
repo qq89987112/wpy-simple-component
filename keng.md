@@ -32,6 +32,7 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 - num+rpx 中间不能有空格
 
 # wepy
+- 组件参数名不能是 templates
 - cli报错不影响程序正常使用。
 - import wepy文件不要加后缀名
 - 引入  在components的前后顺序和嵌套顺序必须一致。
