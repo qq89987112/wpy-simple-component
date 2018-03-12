@@ -1,0 +1,66 @@
+<style lang="scss" scoped>
+  .counter-component{
+    display: flex;
+    .subtract{
+      width: 50rpx;
+      height: 30rpx;
+      line-height: 30rpx;
+      text-align: center;
+      border: 1rpx solid #e4e4e4;
+    }
+    .plus{
+      @extend .subtract;
+    }
+    .count{
+      padding: 0 20rpx;
+    }
+  }
+
+
+</style>
+<template>
+  <view class="counter-component">
+    <view class="subtract" @tap="onSubTap">-</view>
+    <view class="count">{{count}}</view>
+    <view class="plus" @tap="onPlusTap">+</view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  /**
+   * <Checkbox :checked.sync="checked" />
+   */
+  export default class Checkbox extends wepy.component {
+    props = {
+      count: {
+        type: Number,
+        default: 0,
+        twoWay: true
+      },
+      max: {
+        type: Number,
+        default: 100
+      },
+      min: {
+        type: Number,
+        default: 0
+      },
+    }
+
+    data = {
+    }
+
+
+    methods = {
+      onSubTap(){
+        let value = this.count -1;
+        this.count = value < this.min ? this.count : value;
+      },
+      onPlusTap(){
+        let value = this.count +1;
+        this.count = value > this.max ? this.count : value;
+      },
+    }
+  }
+</script>
