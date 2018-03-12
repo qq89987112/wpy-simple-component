@@ -39,6 +39,7 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
     background-color: #f0f0f0;
     color: #333;
   }
+  只在没有加scope的页面生效。
   iconfont的更新需要在app.wpy中触发文件更改才能使用。
 - 组件参数名不能是 templates
 - cli报错不影响程序正常使用。
