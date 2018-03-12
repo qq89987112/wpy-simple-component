@@ -32,11 +32,12 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 - num+rpx 中间不能有空格
 
 # wepy
-- 使用属性选择器在app.py中初始化css
+- 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
     height: 100%;
     font-size: 26rpx;
   }
+  iconfont的更新需要在app.wpy中触发文件更改才能使用。
 - 组件参数名不能是 templates
 - cli报错不影响程序正常使用。
 - import wepy文件不要加后缀名
