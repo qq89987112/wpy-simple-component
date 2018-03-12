@@ -34,8 +34,10 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 # wepy
 - 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
-    height: 100%;
+    height: 100vh;
     font-size: 26rpx;
+    background-color: #f0f0f0;
+    color: #333;
   }
   iconfont的更新需要在app.wpy中触发文件更改才能使用。
 - 组件参数名不能是 templates
