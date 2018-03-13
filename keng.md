@@ -38,6 +38,7 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
     1、只能传入一级对象，比如 index,item ，不能传入 item.checked 等。
       传入的item里，可以使用$前缀代表组件参数。（item支持twoWay）
     2、for也只能传入一级对象,否则repeat组件获取不到item的值。
+    3、嵌套循环可以使用不同id的相同组件。虽然目前看不到好处。
 
 - 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
