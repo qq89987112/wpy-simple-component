@@ -44,8 +44,11 @@
 
     methods = {
       onCheck() {
-        let checked = this.checked || {};
-        checked.$checked = !checked.$checked;
+        // let checked = this.checked || {};
+
+        // 不要进行安全监测，以便于及时发现问题。
+        let checked = this.checked;
+        checked.$checked = !this.checked.$checked;
         this.$emit('check', checked.$checked,this.flag);
       }
     }
