@@ -1,18 +1,32 @@
 <style lang="scss" scoped>
-  .counter-component{
+
+  @font-face {
+    font-family: "iconfont";
+    src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAWcAAsAAAAACGwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kj/Y21hcAAAAYAAAABmAAABlNBYoitnbHlmAAAB6AAAAbUAAAI4ZVgSY2hlYWQAAAOgAAAALwAAADYQudAKaGhlYQAAA9AAAAAcAAAAJAfeA4VobXR4AAAD7AAAABAAAAAQD+kAAGxvY2EAAAP8AAAACgAAAAoBkgDSbWF4cAAABAgAAAAfAAAAIAETAF1uYW1lAAAEKAAAAUUAAAJtPlT+fXBvc3QAAAVwAAAAKQAAAD5fIyk3eJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDwXZm7438AQw9zA0AAUZgTJAQAlfwyCeJzFkMENgCAQBOcEeRhf0IbxZTW+LIOOKUOXk48VuMmw2YUAOWAGgthEBLswuk615n1g8T6yKye5MVFbuW/l2rK7jmgvuU/9Rkv8Jvvv6a9WX4+R+pzrQF9s+UXzopUXwgNAJA3rAAB4nIWQPW/TQBjH73+HnZcmZ59fEztOYh+1QYFIpHYZoqYLcgViQGJi5APAVnVppS6VkGBgJpkQEkNZ2fot+AQIllZMbEjEcAYBEgOcTvo/d9I9z+93RCPk23t2xnrEJlfIDXKL3CME+gQJpxHiLJ/SCdxYc32Hs0xmcUMmU7YDP9Edb7adp77e0A1wDLEVz7azKc1Q5As6x8yLgH4Y3Lc2BxZ7jnYvG55Ud+hLuCM5MBbXq9vXdp3Z2G4edCyrb1nPmrqmNSm9ZHA88r2W1mrr1SvNCNyz0VU6QqefBXcfdMeh9fBJ/jja9FvA8THscMxf74pAqH0YeLbVb5jdZi/oyssODj5u9OxOlH4gajHl+oJ9ZkfEICMyV54xR0MM4ccL3BRT2BwyTtJMqGOsrpks8jTRI0gOx5vDrZV3sFV7s/21l+8Bezm9+JFtyGDtBRIq6YXKL0sxEEvDNI1fBTuiZbH2i5KqpOdF+XUVShnS87B+FVanSy4EX8KMzFVdrczQ+s39SXFvkJBMfnI7Xv3feWr/x4G+rZ7WvbDPTfPNH+aiBMrW38w4rYersXj3T9TvKORg7QAAAHicY2BkYGAA4sAzR73i+W2+MnCzMIDAtbOuvxH0/1ksDMy1QC4HAxNIFABQtQvKAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2ANIBHAAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nGWPTU7DMBCFX/oHpBKqqGCH5AViASj9EatuWFRq911036ZOmyqJI8et1ANwHo7ACTgC3IA78EgnmzaWx9+8eWNPANzgBx6O3y33kT1cMjtyDRe4F65TfxBukF+Em2jjVbhF/U3YxzOmwm10YXmD17hi9oR3YQ8dfAjXcI1P4Tr1L+EG+Vu4iTv8CrfQ8erCPuZeV7iNRy/2x1YvnF6p5UHFockikzm/gple75KFrdLqnGtbxCZTg6BfSVOdaVvdU+zXQ+ciFVmTqgmrOkmMyq3Z6tAFG+fyUa8XiR6EJuVYY/62xgKOcQWFJQ6MMUIYZIjK6Og7VWb0r7FDwl57Vj3N53RbFNT/c4UBAvTPXFO6stJ5Ok+BPV8bUnV0K27LnpQ0kV7NSRKyQl7WtlRC6gE2ZVeOEXpc0Yk/KGdI/wAJWm7IAAAAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYItMzk/T1eXHUIZMjAAADi1BOAAAAA=') format('truetype');
+  }
+
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 30 rpx;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-icon--:before {
+    content: "\e712";
+  }
+
+  .icon-icon--1:before {
+    content: "\e713";
+  }
+
+  .counter-component {
     display: flex;
-    .subtract{
-      width: 50rpx;
-      height: 30rpx;
-      line-height: 30rpx;
-      text-align: center;
-      border: 1rpx solid #e4e4e4;
-    }
-    .plus{
-      @extend .subtract;
-    }
-    .count{
-      padding: 0 20rpx;
+    align-items: center;
+    align-content: center;
+    .count {
+      padding: 0 20 rpx;
     }
   }
 
@@ -20,9 +34,9 @@
 </style>
 <template>
   <view class="counter-component">
-    <view class="subtract" @tap="onSubTap">-</view>
+    <view class="iconfont icon-icon--1" @tap="onSubTap"/>
     <view class="count">{{count}}</view>
-    <view class="plus" @tap="onPlusTap">+</view>
+    <view class="iconfont icon-icon--" @tap="onPlusTap"/>
   </view>
 </template>
 <script>
@@ -48,17 +62,16 @@
       },
     }
 
-    data = {
-    }
+    data = {}
 
 
     methods = {
-      onSubTap(){
-        let value = this.count -1;
+      onSubTap() {
+        let value = this.count - 1;
         this.count = value < this.min ? this.count : value;
       },
-      onPlusTap(){
-        let value = this.count +1;
+      onPlusTap() {
+        let value = this.count + 1;
         this.count = value > this.max ? this.count : value;
       },
     }
