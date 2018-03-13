@@ -59,3 +59,6 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
          </popup>
 
         使用 .user 的页面必须是继承自 Page 而不是 component
+
+
+

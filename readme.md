@@ -43,3 +43,13 @@ $ wepy build --output web --platform qq
    html{
    font-size: 100vw / 750
    }
+
+
+- css 实现多行省略
+                  max-height: 40px;
+                  line-height: 20px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
