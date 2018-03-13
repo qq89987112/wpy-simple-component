@@ -19,7 +19,7 @@
 
 </style>
 <template>
-  <view @tap="onCheck" class="iconfont {{checked ? 'icon-check' :'icon-unchecked'}}"/>
+  <view @tap="onCheck" class="iconfont {{checked.$checked ? 'icon-check' :'icon-unchecked'}}"/>
 </template>
 <script>
   import wepy from 'wepy'
@@ -30,10 +30,9 @@
   export default class Checkbox extends wepy.component {
     props = {
       checked: {
-        type: Boolean,
-        default: false,
         twoWay: true
-      }
+      },
+      a: {}
     }
 
     data = {
@@ -42,7 +41,7 @@
 
     methods = {
       onCheck(){
-        this.checked = !this.checked;
+        this.checked.$checked = !this.checked.$checked;
       }
     }
   }
