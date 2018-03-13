@@ -36,7 +36,7 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
   可以使用repeat标签解决；但是repeat标签存在以下问题：
     1、只能传入一级对象，比如 index,item ，不能传入 item.checked 等。
       传入的item里，可以使用$前缀代表组件参数。（item支持twoWay）
-    2、多层repeat就有问题了。
+    2、for也只能传入一级对象。
 
 - 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
