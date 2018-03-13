@@ -32,6 +32,10 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 - num+rpx 中间不能有空格
 
 # wepy
+- 需要注意的是，WePY中的组件都是静态组件，是以组件ID作为唯一标识的，每一个ID都对应一个组件实例，当页面引入两个相同ID的组件时，这两个组件共用同一个实例与数据，当其中一个组件数据变化时，另外一个也会一起变化。
+  可以使用repeat标签解决；但是repeat标签存在以下问题：
+    只能传入一级对象，比如 index,item ，不能传入 item.checked 等。
+
 - 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
     height: 100vh;
