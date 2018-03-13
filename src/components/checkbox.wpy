@@ -31,8 +31,7 @@
     props = {
       checked: {
         twoWay: true
-      },
-      a: {}
+      }
     }
 
     data = {
