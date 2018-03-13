@@ -34,8 +34,9 @@ wepy中,有时候使用 this.list = list 出发不了刷新，此时需要调用
 # wepy
 - 需要注意的是，WePY中的组件都是静态组件，是以组件ID作为唯一标识的，每一个ID都对应一个组件实例，当页面引入两个相同ID的组件时，这两个组件共用同一个实例与数据，当其中一个组件数据变化时，另外一个也会一起变化。
   可以使用repeat标签解决；但是repeat标签存在以下问题：
-    只能传入一级对象，比如 index,item ，不能传入 item.checked 等。
-    传入的item里，可以使用$前缀代表组件参数。（item支持twoWay）
+    1、只能传入一级对象，比如 index,item ，不能传入 item.checked 等。
+      传入的item里，可以使用$前缀代表组件参数。（item支持twoWay）
+    2、多层repeat就有问题了。
 
 - 使用属性选择器在app.wpy中初始化css
   [class$="page"] {
