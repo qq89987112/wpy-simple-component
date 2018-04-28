@@ -1,3 +1,8 @@
+# keng
+
+        在嵌套循环中，二级对象可以通过 @tap="{{data}}" 来拿到data数据，但是有时候无效，就要更改标签名。
+
+
 <view class="product-list-box">
   <repeat for="{{list}}" key="index" index="index" item="item">
   <view class="store-panel">
